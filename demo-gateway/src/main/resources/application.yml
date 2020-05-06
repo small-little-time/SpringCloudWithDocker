@@ -1,0 +1,16 @@
+server:
+  port: 10010
+spring:
+  application:
+    name: demo-gateway
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:10086/eureka #localhost请改成eureka所在服务器的IP
+    registry-fetch-interval-seconds: 5 #拉取服务列表的间隔时间
+zuul:
+  prefix: /api
+  routes:
+    user-service: /user/** #路由到用户的微服务
+  add-host-header: true
+  sensitive-headers:  #覆盖默认敏感头信息
